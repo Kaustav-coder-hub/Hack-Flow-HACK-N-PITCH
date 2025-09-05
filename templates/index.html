@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HackFlow - HACK<N>PITCH Command Center</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard-layout">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2>HackFlow</h2>
+                <p class="sidebar-subtitle">HACK&lt;N&gt;PITCH Command Center</p>
+            </div>
+            <ul class="sidebar-nav">
+                <li><a href="#" class="nav-link active" data-section="dashboard">Dashboard</a></li>
+                <li><a href="#" class="nav-link" data-section="participants">Participants</a></li>
+                <li><a href="#" class="nav-link" data-section="teams">Teams</a></li>
+                <li><a href="#" class="nav-link" data-section="projects">Projects</a></li>
+                <li><a href="#" class="nav-link" data-section="judging">Judging</a></li>
+                <li><a href="#" class="nav-link" data-section="mentors">Mentors</a></li>
+                <li><a href="#" class="nav-link" data-section="communication">Communication</a></li>
+                <li><a href="#" class="nav-link" data-section="analytics">Analytics</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="content-section active">
+                <div class="section-header">
+                    <h1>Dashboard Overview</h1>
+                    <div class="hackathon-info">
+                        <h3>HACK&lt;N&gt;PITCH 2025</h3>
+                        <p>November 7-8, 2025 • Jadavpur University Salt Lake Campus</p>
+                    </div>
+                </div>
+
+                <!-- Statistics Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-content">
+                            <h3 id="total-participants">187</h3>
+                            <p>Total Participants</p>
+                            <span class="stat-sub">of 200 registered</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🚀</div>
+                        <div class="stat-content">
+                            <h3 id="teams-formed">46</h3>
+                            <p>Teams Formed</p>
+                            <span class="stat-sub">of 50 maximum</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📋</div>
+                        <div class="stat-content">
+                            <h3 id="projects-submitted">23</h3>
+                            <p>Projects Submitted</p>
+                            <span class="stat-sub">deadline approaching</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🧠</div>
+                        <div class="stat-content">
+                            <h3 id="mentors-available">12</h3>
+                            <p>Mentors Available</p>
+                            <span class="stat-sub">ready to help</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts and Activity -->
+                <div class="dashboard-content">
+                    <div class="chart-container">
+                        <div class="card">
+                            <div class="card__header">
+                                <h3>Registration Progress</h3>
+                            </div>
+                            <div class="card__body">
+                                <div class="chart-wrapper" style="position: relative; height: 300px;">
+                                    <canvas id="registrationChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="activity-feed">
+                        <div class="card">
+                            <div class="card__header">
+                                <h3>Live Activity Feed</h3>
+                            </div>
+                            <div class="card__body">
+                                <div id="activity-list" class="activity-list">
+                                    <!-- Activity items will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Track Distribution -->
+                <div class="track-distribution">
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Track Distribution</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="chart-wrapper" style="position: relative; height: 300px;">
+                                <canvas id="trackChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Participants Section -->
+            <section id="participants" class="content-section">
+                <div class="section-header">
+                    <h1>Participant Management</h1>
+                    <div class="section-actions">
+                        <input type="text" id="participant-search" class="form-control search-input" placeholder="Search participants...">
+                        <select id="participant-filter" class="form-control">
+                            <option value="">All Tracks</option>
+                            <option value="Generative AI">Generative AI</option>
+                            <option value="Agentic AI">Agentic AI</option>
+                            <option value="Web3">Web3</option>
+                            <option value="Cybersecurity">Cybersecurity</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="participants-grid" id="participants-grid">
+                    <!-- Participant cards will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Teams Section -->
+            <section id="teams" class="content-section">
+                <div class="section-header">
+                    <h1>Team Management</h1>
+                    <button class="btn btn--primary" id="add-team-btn">Add New Team</button>
+                </div>
+
+                <div class="teams-grid" id="teams-grid">
+                    <!-- Team cards will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="content-section">
+                <div class="section-header">
+                    <h1>Project Submissions</h1>
+                    <div class="section-actions">
+                        <select id="project-filter" class="form-control">
+                            <option value="">All Tracks</option>
+                            <option value="Generative AI">Generative AI</option>
+                            <option value="Agentic AI">Agentic AI</option>
+                            <option value="Web3">Web3</option>
+                            <option value="Cybersecurity">Cybersecurity</option>
+                        </select>
+                        <select id="submission-filter" class="form-control">
+                            <option value="">All Submissions</option>
+                            <option value="Submitted">Submitted</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Planning">Planning</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="projects-grid" id="projects-grid">
+                    <!-- Project cards will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Judging Section -->
+            <section id="judging" class="content-section">
+                <div class="section-header">
+                    <h1>Judging Platform</h1>
+                    <div class="judging-stats">
+                        <span class="status status--info">23 Projects to Review</span>
+                        <span class="status status--success">3 Judges Assigned</span>
+                    </div>
+                </div>
+
+                <div class="judging-content">
+                    <div class="judges-panel">
+                        <div class="card">
+                            <div class="card__header">
+                                <h3>Judges</h3>
+                            </div>
+                            <div class="card__body">
+                                <div id="judges-list">
+                                    <!-- Judges will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="scoring-panel">
+                        <div class="card">
+                            <div class="card__header">
+                                <h3>Scoring Overview</h3>
+                            </div>
+                            <div class="card__body">
+                                <div class="chart-wrapper" style="position: relative; height: 300px;">
+                                    <canvas id="scoringChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mentors Section -->
+            <section id="mentors" class="content-section">
+                <div class="section-header">
+                    <h1>Mentor Coordination</h1>
+                    <div class="mentor-stats">
+                        <span class="status status--success">12 Mentors Available</span>
+                        <span class="status status--warning">9 Teams Assigned</span>
+                    </div>
+                </div>
+
+                <div class="mentors-grid" id="mentors-grid">
+                    <!-- Mentor cards will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Communication Section -->
+            <section id="communication" class="content-section">
+                <div class="section-header">
+                    <h1>Communication Hub</h1>
+                    <button class="btn btn--primary" id="send-announcement-btn">Send Announcement</button>
+                </div>
+
+                <div class="communication-content">
+                    <div class="announcements-panel">
+                        <div class="card">
+                            <div class="card__header">
+                                <h3>Recent Announcements</h3>
+                            </div>
+                            <div class="card__body">
+                                <div id="announcements-list">
+                                    <div class="announcement-item">
+                                        <h4>Project Submission Deadline Reminder</h4>
+                                        <p>Don't forget to submit your projects by November 8th, 6:00 PM!</p>
+                                        <small>Sent 1 hour ago</small>
+                                    </div>
+                                    <div class="announcement-item">
+                                        <h4>Welcome to HACK&lt;N&gt;PITCH 2025</h4>
+                                        <p>We're excited to have you join us for this amazing hackathon!</p>
+                                        <small>Sent 2 days ago</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="support-panel">
+                        <div class="card">
+                            <div class="card__header">
+                                <h3>Support Tickets</h3>
+                            </div>
+                            <div class="card__body">
+                                <div class="support-tickets">
+                                    <div class="ticket-item">
+                                        <div class="ticket-header">
+                                            <span class="status status--warning">Open</span>
+                                            <span class="ticket-id">#001</span>
+                                        </div>
+                                        <p>Team "AI Innovators" needs help with API integration</p>
+                                        <small>2 hours ago</small>
+                                    </div>
+                                    <div class="ticket-item">
+                                        <div class="ticket-header">
+                                            <span class="status status--success">Resolved</span>
+                                            <span class="ticket-id">#002</span>
+                                        </div>
+                                        <p>GitHub access issue resolved for Team "Cyber Guardians"</p>
+                                        <small>4 hours ago</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Analytics Section -->
+            <section id="analytics" class="content-section">
+                <div class="section-header">
+                    <h1>Analytics & Reports</h1>
+                    <button class="btn btn--outline" id="export-report-btn">Export Report</button>
+                </div>
+
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <div class="card">
+                            <div class="card__header">
+                                <h3>Registration Analytics</h3>
+                            </div>
+                            <div class="card__body">
+                                <div class="chart-wrapper" style="position: relative; height: 250px;">
+                                    <canvas id="registrationAnalyticsChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="analytics-card">
+                        <div class="card">
+                            <div class="card__header">
+                                <h3>Track Popularity</h3>
+                            </div>
+                            <div class="card__body">
+                                <div class="chart-wrapper" style="position: relative; height: 250px;">
+                                    <canvas id="trackPopularityChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="analytics-card">
+                        <div class="card">
+                            <div class="card__header">
+                                <h3>Engagement Metrics</h3>
+                            </div>
+                            <div class="card__body">
+                                <div class="metric-item">
+                                    <span class="metric-label">Average Team Size</span>
+                                    <span class="metric-value">3.2 members</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">Submission Rate</span>
+                                    <span class="metric-value">50% (23/46 teams)</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">Mentor Utilization</span>
+                                    <span class="metric-value">75% (9/12 mentors)</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">Active Participants</span>
+                                    <span class="metric-value">92% (172/187)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="analytics-card">
+                        <div class="card">
+                            <div class="card__header">
+                                <h3>University Distribution</h3>
+                            </div>
+                            <div class="card__body">
+                                <div class="university-stats">
+                                    <div class="uni-item">
+                                        <span>Jadavpur University</span>
+                                        <span>42%</span>
+                                    </div>
+                                    <div class="uni-item">
+                                        <span>IIT Kharagpur</span>
+                                        <span>28%</span>
+                                    </div>
+                                    <div class="uni-item">
+                                        <span>NIT Durgapur</span>
+                                        <span>18%</span>
+                                    </div>
+                                    <div class="uni-item">
+                                        <span>Calcutta University</span>
+                                        <span>12%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal for team details -->
+    <div id="team-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-team-name">Team Details</h3>
+                <button class="modal-close" id="close-modal">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-team-content">
+                <!-- Team details will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="../static/app.js"></script>
+</body>
+</html>
