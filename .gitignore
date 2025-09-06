@@ -14,3 +14,4 @@ firebase-key.json
 dist/
 build/
 firestore.py
+firestore_count.py
