@@ -13,3 +13,4 @@ Thumbs.db
 firebase-key.json
 dist/
 build/
+firestore.py

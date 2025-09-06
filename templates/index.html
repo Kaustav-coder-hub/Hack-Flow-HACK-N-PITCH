@@ -3,196 +3,355 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HackFlow - HACK<N>PITCH Command Center</title>
-    <link rel="stylesheet" href="../static/style.css">
+    <title>HACK&lt;N&gt;PITCH 2025 - Eastern India's Premier Hackathon</title>
+    <link rel="stylesheet" href="/static/style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <div class="dashboard-layout">
-        <!-- Sidebar Navigation -->
-        <nav class="sidebar">
-            <div class="sidebar-header">
-                <h2>HackFlow</h2>
-                <p class="sidebar-subtitle">HACK&lt;N&gt;PITCH Command Center</p>
+    <!-- Public Dashboard -->
+    <div id="public-app" class="public-layout">
+        <!-- Public Header -->
+        <header class="public-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <h1>HACK&lt;N&gt;PITCH 2025</h1>
+                        <p>Eastern India's Premier Hackathon</p>
+                    </div>
+                    <nav class="public-nav">
+                        <a href="#overview" class="nav-link active" data-section="overview">Overview</a>
+                        <a href="#tracks" class="nav-link" data-section="tracks">Tracks</a>
+                        <a href="#timeline" class="nav-link" data-section="timeline">Timeline</a>
+                        <a href="#faq" class="nav-link" data-section="faq">FAQ</a>
+                        <button class="btn btn--primary" id="admin-login-btn">Admin Login</button>
+                    </nav>
+                </div>
             </div>
-            <ul class="sidebar-nav">
-                <li><a href="#" class="nav-link active" data-section="dashboard">Dashboard</a></li>
-                <li><a href="#" class="nav-link" data-section="participants">Participants</a></li>
-                <li><a href="#" class="nav-link" data-section="teams">Teams</a></li>
-                <li><a href="#" class="nav-link" data-section="projects">Projects</a></li>
-                <li><a href="#" class="nav-link" data-section="judging">Judging</a></li>
-                <li><a href="#" class="nav-link" data-section="mentors">Mentors</a></li>
-                <li><a href="#" class="nav-link" data-section="communication">Communication</a></li>
-                <li><a href="#" class="nav-link" data-section="analytics">Analytics</a></li>
-            </ul>
-        </nav>
+        </header>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Dashboard Section -->
-            <section id="dashboard" class="content-section active">
-                <div class="section-header">
-                    <h1>Dashboard Overview</h1>
-                    <div class="hackathon-info">
-                        <h3>HACK&lt;N&gt;PITCH 2025</h3>
-                        <p>November 7-8, 2025 • Jadavpur University Salt Lake Campus</p>
-                    </div>
-                </div>
-
-                <!-- Statistics Cards -->
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-icon">👥</div>
-                        <div class="stat-content">
-                            <h3 id="total-participants">187</h3>
-                            <p>Total Participants</p>
-                            <span class="stat-sub">of 200 registered</span>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">🚀</div>
-                        <div class="stat-content">
-                            <h3 id="teams-formed">46</h3>
-                            <p>Teams Formed</p>
-                            <span class="stat-sub">of 50 maximum</span>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">📋</div>
-                        <div class="stat-content">
-                            <h3 id="projects-submitted">23</h3>
-                            <p>Projects Submitted</p>
-                            <span class="stat-sub">deadline approaching</span>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">🧠</div>
-                        <div class="stat-content">
-                            <h3 id="mentors-available">12</h3>
-                            <p>Mentors Available</p>
-                            <span class="stat-sub">ready to help</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Charts and Activity -->
-                <div class="dashboard-content">
-                    <div class="chart-container">
-                        <div class="card">
-                            <div class="card__header">
-                                <h3>Registration Progress</h3>
-                            </div>
-                            <div class="card__body">
-                                <div class="chart-wrapper" style="position: relative; height: 300px;">
-                                    <canvas id="registrationChart"></canvas>
+        <!-- Public Main Content -->
+        <main class="public-main">
+            <!-- Overview Section -->
+            <section id="overview" class="public-section active">
+                <div class="container">
+                    <div class="hero-section">
+                        <div class="hero-content">
+                            <h2>Build. Code. Win.</h2>
+                            <p>Join Eastern India's most exciting 24-hour product-based hackathon at Jadavpur University Salt Lake Campus</p>
+                            <div class="hero-details">
+                                <div class="detail-item">
+                                    <span class="icon">📅</span>
+                                    <span>November 7-8, 2025</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="icon">📍</span>
+                                    <span>Jadavpur University Salt Lake Campus</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="icon">💰</span>
+                                    <span>$100 Prize Pool + Medals & Certificates</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="activity-feed">
+                    <!-- Public Statistics -->
+                    <div class="public-stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">👥</div>
+                            <div class="stat-content">
+                                <h3 id="public-participants">187</h3>
+                                <p>Participants Registered</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">🚀</div>
+                            <div class="stat-content">
+                                <h3 id="public-teams">46</h3>
+                                <p>Teams Formed</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">📋</div>
+                            <div class="stat-content">
+                                <h3 id="public-projects">23</h3>
+                                <p>Projects Submitted</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">⏰</div>
+                            <div class="stat-content">
+                                <h3 id="public-days">63</h3>
+                                <p>Days Until Event</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Activity Feed -->
+                    <div class="activity-section">
                         <div class="card">
                             <div class="card__header">
-                                <h3>Live Activity Feed</h3>
+                                <h3>Recent Activity</h3>
                             </div>
                             <div class="card__body">
-                                <div id="activity-list" class="activity-list">
+                                <div id="public-activity-feed">
                                     <!-- Activity items will be populated by JavaScript -->
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </section>
 
-                <!-- Track Distribution -->
-                <div class="track-distribution">
-                    <div class="card">
-                        <div class="card__header">
-                            <h3>Track Distribution</h3>
+            <!-- Tracks Section -->
+            <section id="tracks" class="public-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Hackathon Tracks</h2>
+                        <p>Choose your area of expertise and innovation</p>
+                    </div>
+                    <div class="tracks-grid" id="public-tracks-grid">
+                        <!-- Track cards will be populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Timeline Section -->
+            <section id="timeline" class="public-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Event Timeline</h2>
+                        <p>Important dates and milestones</p>
+                    </div>
+                    <div class="timeline" id="public-timeline">
+                        <!-- Timeline items will be populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section id="faq" class="public-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Frequently Asked Questions</h2>
+                        <p>Find answers to common questions</p>
+                    </div>
+                    <div class="faq-grid" id="public-faq-grid">
+                        <!-- FAQ items will be populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Public Footer -->
+        <footer class="public-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h4>Contact Organizers</h4>
+                        <div class="organizer-contacts">
+                            <p><strong>Shivam Mundra</strong> - Lead Organizer<br>📞 +918336940307</p>
+                            <p><strong>Aditya Anand</strong> - Event Coordinator<br>📞 +918961313886</p>
                         </div>
-                        <div class="card__body">
-                            <div class="chart-wrapper" style="position: relative; height: 300px;">
-                                <canvas id="trackChart"></canvas>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Sponsored By</h4>
+                        <p><strong>ETHIndia</strong></p>
+                        <p>Supporting innovation in Eastern India</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Admin Dashboard (Hidden by default) -->
+    <div id="admin-app" class="dashboard-layout hidden">
+        <!-- Admin Header -->
+        <header class="admin-header">
+            <div class="admin-header-content">
+                <div class="admin-logo">
+                    <h2>HackFlow Admin</h2>
+                    <span class="admin-subtitle">HACK&lt;N&gt;PITCH Command Center</span>
+                </div>
+                <div class="admin-user-info">
+                    <div class="admin-badge">
+                        <span class="admin-role" id="admin-role">Super Admin</span>
+                        <span class="admin-name" id="admin-name">Shivam Mundra</span>
+                    </div>
+                    <button class="btn btn--outline btn--sm" id="logout-btn">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <div class="admin-container">
+            <!-- Sidebar Navigation -->
+            <nav class="sidebar">
+                <ul class="sidebar-nav">
+                    <li><a href="#" class="nav-link active" data-section="dashboard">Dashboard</a></li>
+                    <li><a href="#" class="nav-link" data-section="participants" data-permission="participants">Participant Management</a></li>
+                    <li><a href="#" class="nav-link" data-section="teams" data-permission="teams">Team Management</a></li>
+                    <li><a href="#" class="nav-link" data-section="projects" data-permission="projects">Project Submissions</a></li>
+                    <li><a href="#" class="nav-link" data-section="judging" data-permission="judging">Judge Administration</a></li>
+                    <li><a href="#" class="nav-link" data-section="mentors">Mentor Coordination</a></li>
+                    <li><a href="#" class="nav-link" data-section="communication" data-permission="communication">Communication Hub</a></li>
+                    <li><a href="#" class="nav-link" data-section="analytics">Analytics & Reports</a></li>
+                    <li><a href="#" class="nav-link" data-section="public-view">View Public Site</a></li>
+                </ul>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Dashboard Section -->
+                <section id="dashboard" class="content-section active">
+                    <div class="section-header">
+                        <h1>Admin Dashboard</h1>
+                        <div class="hackathon-info">
+                            <h3>HACK&lt;N&gt;PITCH 2025</h3>
+                            <p>November 7-8, 2025 • Jadavpur University Salt Lake Campus</p>
+                        </div>
+                    </div>
+
+                    <!-- Admin Action Center -->
+                    <div class="admin-action-center">
+                        <div class="card">
+                            <div class="card__header">
+                                <h3>Quick Admin Actions</h3>
+                            </div>
+                            <div class="card__body">
+                                <div class="admin-actions">
+                                    <button class="btn btn--primary btn--sm" id="add-participant-quick">Add Participant</button>
+                                    <button class="btn btn--primary btn--sm" id="create-team-quick">Create Team</button>
+                                    <button class="btn btn--primary btn--sm" id="send-announcement-quick">Send Announcement</button>
+                                    <button class="btn btn--outline btn--sm" id="export-data-quick">Export Data</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
 
-            <!-- Participants Section -->
-            <section id="participants" class="content-section">
-                <div class="section-header">
-                    <h1>Participant Management</h1>
-                    <div class="section-actions">
-                        <input type="text" id="participant-search" class="form-control search-input" placeholder="Search participants...">
-                        <select id="participant-filter" class="form-control">
-                            <option value="">All Tracks</option>
-                            <option value="Generative AI">Generative AI</option>
-                            <option value="Agentic AI">Agentic AI</option>
-                            <option value="Web3">Web3</option>
-                            <option value="Cybersecurity">Cybersecurity</option>
-                        </select>
+                    <!-- Statistics Cards -->
+                    <div class="stats-grid">
+                        <div class="stat-card admin-stat">
+                            <div class="stat-icon">👥</div>
+                            <div class="stat-content">
+                                <h3 id="admin-participants">187</h3>
+                                <p>Total Participants</p>
+                                <span class="stat-sub">of 200 registered</span>
+                            </div>
+                        </div>
+                        <div class="stat-card admin-stat">
+                            <div class="stat-icon">🚀</div>
+                            <div class="stat-content">
+                                <h3 id="admin-teams">46</h3>
+                                <p>Teams Formed</p>
+                                <span class="stat-sub">of 50 maximum</span>
+                            </div>
+                        </div>
+                        <div class="stat-card admin-stat">
+                            <div class="stat-icon">📋</div>
+                            <div class="stat-content">
+                                <h3 id="admin-projects">23</h3>
+                                <p>Projects Submitted</p>
+                                <span class="stat-sub">8 pending review</span>
+                            </div>
+                        </div>
+                        <div class="stat-card admin-stat">
+                            <div class="stat-icon">⚠️</div>
+                            <div class="stat-content">
+                                <h3 id="pending-tasks">5</h3>
+                                <p>Pending Admin Tasks</p>
+                                <span class="stat-sub">require attention</span>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                <div class="participants-grid" id="participants-grid">
-                    <!-- Participant cards will be populated by JavaScript -->
-                </div>
-            </section>
+                    <!-- Admin Notifications & System Health -->
+                    <div class="admin-dashboard-content">
+                        <div class="admin-notifications">
+                            <div class="card">
+                                <div class="card__header">
+                                    <h3>Admin Notifications</h3>
+                                </div>
+                                <div class="card__body">
+                                    <div id="admin-notifications-list">
+                                        <!-- Notifications will be populated by JavaScript -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-            <!-- Teams Section -->
-            <section id="teams" class="content-section">
-                <div class="section-header">
-                    <h1>Team Management</h1>
-                    <button class="btn btn--primary" id="add-team-btn">Add New Team</button>
-                </div>
-
-                <div class="teams-grid" id="teams-grid">
-                    <!-- Team cards will be populated by JavaScript -->
-                </div>
-            </section>
-
-            <!-- Projects Section -->
-            <section id="projects" class="content-section">
-                <div class="section-header">
-                    <h1>Project Submissions</h1>
-                    <div class="section-actions">
-                        <select id="project-filter" class="form-control">
-                            <option value="">All Tracks</option>
-                            <option value="Generative AI">Generative AI</option>
-                            <option value="Agentic AI">Agentic AI</option>
-                            <option value="Web3">Web3</option>
-                            <option value="Cybersecurity">Cybersecurity</option>
-                        </select>
-                        <select id="submission-filter" class="form-control">
-                            <option value="">All Submissions</option>
-                            <option value="Submitted">Submitted</option>
-                            <option value="In Progress">In Progress</option>
-                            <option value="Planning">Planning</option>
-                        </select>
+                        <div class="system-health">
+                            <div class="card">
+                                <div class="card__header">
+                                    <h3>System Health</h3>
+                                </div>
+                                <div class="card__body">
+                                    <div class="health-metrics">
+                                        <div class="health-item">
+                                            <span class="health-label">Server Status</span>
+                                            <span class="status status--success">Online</span>
+                                        </div>
+                                        <div class="health-item">
+                                            <span class="health-label">Database</span>
+                                            <span class="status status--success">Healthy</span>
+                                        </div>
+                                        <div class="health-item">
+                                            <span class="health-label">Email Service</span>
+                                            <span class="status status--success">Active</span>
+                                        </div>
+                                        <div class="health-item">
+                                            <span class="health-label">Backup Status</span>
+                                            <span class="status status--info">Last: 2h ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </section>
 
-                <div class="projects-grid" id="projects-grid">
-                    <!-- Project cards will be populated by JavaScript -->
-                </div>
-            </section>
-
-            <!-- Judging Section -->
-            <section id="judging" class="content-section">
-                <div class="section-header">
-                    <h1>Judging Platform</h1>
-                    <div class="judging-stats">
-                        <span class="status status--info">23 Projects to Review</span>
-                        <span class="status status--success">3 Judges Assigned</span>
+                <!-- Other admin sections would be here -->
+                <section id="participants" class="content-section">
+                    <div class="section-header">
+                        <h1>Participant Management</h1>
+                        <div class="section-actions">
+                            <button class="btn btn--primary" id="add-participant-btn">Add Participant</button>
+                            <button class="btn btn--outline" id="export-participants-btn">Export</button>
+                        </div>
                     </div>
-                </div>
+                    <div class="participants-grid" id="participants-grid">
+                        <!-- Participant cards will be populated by JavaScript -->
+                    </div>
+                </section>
 
-                <div class="judging-content">
-                    <div class="judges-panel">
+                <section id="teams" class="content-section">
+                    <div class="section-header">
+                        <h1>Team Management</h1>
+                        <div class="section-actions">
+                            <button class="btn btn--primary" id="create-team-btn">Create Team</button>
+                        </div>
+                    </div>
+                    <div class="teams-grid" id="teams-grid">
+                        <!-- Team cards will be populated by JavaScript -->
+                    </div>
+                </section>
+
+                <section id="projects" class="content-section">
+                    <div class="section-header">
+                        <h1>Project Submissions</h1>
+                    </div>
+                    <div class="projects-grid" id="projects-grid">
+                        <!-- Project cards will be populated by JavaScript -->
+                    </div>
+                </section>
+
+                <section id="judging" class="content-section">
+                    <div class="section-header">
+                        <h1>Judge Administration</h1>
+                    </div>
+                    <div class="judges-management">
                         <div class="card">
                             <div class="card__header">
-                                <h3>Judges</h3>
+                                <h3>Judge Management</h3>
                             </div>
                             <div class="card__body">
                                 <div id="judges-list">
@@ -201,202 +360,119 @@
                             </div>
                         </div>
                     </div>
+                </section>
 
-                    <div class="scoring-panel">
-                        <div class="card">
-                            <div class="card__header">
-                                <h3>Scoring Overview</h3>
-                            </div>
-                            <div class="card__body">
-                                <div class="chart-wrapper" style="position: relative; height: 300px;">
-                                    <canvas id="scoringChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
+                <section id="mentors" class="content-section">
+                    <div class="section-header">
+                        <h1>Mentor Coordination</h1>
                     </div>
-                </div>
-            </section>
-
-            <!-- Mentors Section -->
-            <section id="mentors" class="content-section">
-                <div class="section-header">
-                    <h1>Mentor Coordination</h1>
-                    <div class="mentor-stats">
-                        <span class="status status--success">12 Mentors Available</span>
-                        <span class="status status--warning">9 Teams Assigned</span>
+                    <div class="mentors-grid" id="mentors-grid">
+                        <!-- Mentor cards will be populated by JavaScript -->
                     </div>
-                </div>
+                </section>
 
-                <div class="mentors-grid" id="mentors-grid">
-                    <!-- Mentor cards will be populated by JavaScript -->
-                </div>
-            </section>
-
-            <!-- Communication Section -->
-            <section id="communication" class="content-section">
-                <div class="section-header">
-                    <h1>Communication Hub</h1>
-                    <button class="btn btn--primary" id="send-announcement-btn">Send Announcement</button>
-                </div>
-
-                <div class="communication-content">
-                    <div class="announcements-panel">
+                <section id="communication" class="content-section">
+                    <div class="section-header">
+                        <h1>Communication Hub</h1>
+                    </div>
+                    <div class="communication-content">
                         <div class="card">
                             <div class="card__header">
                                 <h3>Recent Announcements</h3>
                             </div>
                             <div class="card__body">
                                 <div id="announcements-list">
-                                    <div class="announcement-item">
-                                        <h4>Project Submission Deadline Reminder</h4>
-                                        <p>Don't forget to submit your projects by November 8th, 6:00 PM!</p>
-                                        <small>Sent 1 hour ago</small>
-                                    </div>
-                                    <div class="announcement-item">
-                                        <h4>Welcome to HACK&lt;N&gt;PITCH 2025</h4>
-                                        <p>We're excited to have you join us for this amazing hackathon!</p>
-                                        <small>Sent 2 days ago</small>
+                                    <!-- Announcements will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="analytics" class="content-section">
+                    <div class="section-header">
+                        <h1>Analytics & Reports</h1>
+                    </div>
+                    <div class="analytics-grid">
+                        <div class="analytics-card">
+                            <div class="card">
+                                <div class="card__header">
+                                    <h3>Registration Analytics</h3>
+                                </div>
+                                <div class="card__body">
+                                    <div class="chart-wrapper">
+                                        <canvas id="registrationChart"></canvas>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </section>
 
-                    <div class="support-panel">
-                        <div class="card">
-                            <div class="card__header">
-                                <h3>Support Tickets</h3>
-                            </div>
-                            <div class="card__body">
-                                <div class="support-tickets">
-                                    <div class="ticket-item">
-                                        <div class="ticket-header">
-                                            <span class="status status--warning">Open</span>
-                                            <span class="ticket-id">#001</span>
-                                        </div>
-                                        <p>Team "AI Innovators" needs help with API integration</p>
-                                        <small>2 hours ago</small>
-                                    </div>
-                                    <div class="ticket-item">
-                                        <div class="ticket-header">
-                                            <span class="status status--success">Resolved</span>
-                                            <span class="ticket-id">#002</span>
-                                        </div>
-                                        <p>GitHub access issue resolved for Team "Cyber Guardians"</p>
-                                        <small>4 hours ago</small>
-                                    </div>
-                                </div>
-                            </div>
+                <section id="public-view" class="content-section">
+                    <div class="section-header">
+                        <h1>Public Site Preview</h1>
+                        <button class="btn btn--primary" onclick="switchToPublicMode()">Switch to Public View</button>
+                    </div>
+                    <div class="card">
+                        <div class="card__body">
+                            <p>This section allows you to preview and switch back to the public-facing site while maintaining your admin session.</p>
                         </div>
                     </div>
-                </div>
-            </section>
-
-            <!-- Analytics Section -->
-            <section id="analytics" class="content-section">
-                <div class="section-header">
-                    <h1>Analytics & Reports</h1>
-                    <button class="btn btn--outline" id="export-report-btn">Export Report</button>
-                </div>
-
-                <div class="analytics-grid">
-                    <div class="analytics-card">
-                        <div class="card">
-                            <div class="card__header">
-                                <h3>Registration Analytics</h3>
-                            </div>
-                            <div class="card__body">
-                                <div class="chart-wrapper" style="position: relative; height: 250px;">
-                                    <canvas id="registrationAnalyticsChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="analytics-card">
-                        <div class="card">
-                            <div class="card__header">
-                                <h3>Track Popularity</h3>
-                            </div>
-                            <div class="card__body">
-                                <div class="chart-wrapper" style="position: relative; height: 250px;">
-                                    <canvas id="trackPopularityChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="analytics-card">
-                        <div class="card">
-                            <div class="card__header">
-                                <h3>Engagement Metrics</h3>
-                            </div>
-                            <div class="card__body">
-                                <div class="metric-item">
-                                    <span class="metric-label">Average Team Size</span>
-                                    <span class="metric-value">3.2 members</span>
-                                </div>
-                                <div class="metric-item">
-                                    <span class="metric-label">Submission Rate</span>
-                                    <span class="metric-value">50% (23/46 teams)</span>
-                                </div>
-                                <div class="metric-item">
-                                    <span class="metric-label">Mentor Utilization</span>
-                                    <span class="metric-value">75% (9/12 mentors)</span>
-                                </div>
-                                <div class="metric-item">
-                                    <span class="metric-label">Active Participants</span>
-                                    <span class="metric-value">92% (172/187)</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="analytics-card">
-                        <div class="card">
-                            <div class="card__header">
-                                <h3>University Distribution</h3>
-                            </div>
-                            <div class="card__body">
-                                <div class="university-stats">
-                                    <div class="uni-item">
-                                        <span>Jadavpur University</span>
-                                        <span>42%</span>
-                                    </div>
-                                    <div class="uni-item">
-                                        <span>IIT Kharagpur</span>
-                                        <span>28%</span>
-                                    </div>
-                                    <div class="uni-item">
-                                        <span>NIT Durgapur</span>
-                                        <span>18%</span>
-                                    </div>
-                                    <div class="uni-item">
-                                        <span>Calcutta University</span>
-                                        <span>12%</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
+                </section>
+            </main>
+        </div>
     </div>
 
-    <!-- Modal for team details -->
-    <div id="team-modal" class="modal hidden">
-        <div class="modal-content">
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal hidden">
+        <div class="modal-content login-modal">
             <div class="modal-header">
-                <h3 id="modal-team-name">Team Details</h3>
-                <button class="modal-close" id="close-modal">&times;</button>
+                <h3>Admin Login</h3>
+                <button class="modal-close" id="close-login-modal">&times;</button>
             </div>
-            <div class="modal-body" id="modal-team-content">
-                <!-- Team details will be populated by JavaScript -->
+            <div class="modal-body">
+                <form id="login-form" class="login-form">
+                    <div class="form-group">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" id="username" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" id="password" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="remember-me">
+                            <input type="checkbox" id="remember-me">
+                            <span>Remember Me</span>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn--primary btn--full-width">Login</button>
+                    <div id="login-error" class="login-error hidden">Invalid credentials. Please try again.</div>
+                </form>
+                <div class="login-demo-accounts">
+                    <h4>Demo Accounts:</h4>
+                    <p><strong>Super Admin:</strong> admin / admin123</p>
+                    <p><strong>Event Manager:</strong> eventmgr / event123</p>
+                    <p><strong>Judge Coordinator:</strong> judgemgr / judge123</p>
+                </div>
             </div>
         </div>
     </div>
 
-    <script src="../static/app.js"></script>
+    <!-- Form Modal -->
+    <div id="form-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="form-modal-title">Form</h3>
+                <button class="modal-close" id="close-form-modal">&times;</button>
+            </div>
+            <div class="modal-body" id="form-modal-content">
+                <!-- Form content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
 </body>
 </html>
