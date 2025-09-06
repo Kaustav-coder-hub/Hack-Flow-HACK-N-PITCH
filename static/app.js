@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
   } else {
     showPublicMode();
   }
-  
+
   console.log('Integrated app initialized successfully');
 });
 
@@ -1014,32 +1014,82 @@ function populateAnnouncements() {
 
 // Charts
 function initializeCharts() {
-  const ctx = document.getElementById('registrationChart')?.getContext('2d');
-  if (!ctx) return;
-  
-  registrationChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: ['Sep 1', 'Sep 2', 'Sep 3', 'Sep 4', 'Sep 5'],
-      datasets: [{
-        label: 'Daily Registrations',
-        data: [12, 19, 15, 25, 18],
-        borderColor: '#1FB8CD',
-        backgroundColor: 'rgba(31, 184, 205, 0.1)',
-        tension: 0.4,
-        fill: true
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          display: false
-        }
+  fetch('/api/analytics')
+    .then(res => res.json())
+    .then(data => {
+      // Registration Analytics Chart
+      const ctx = document.getElementById('registrationChart')?.getContext('2d');
+      if (ctx) {
+        registrationChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: data.registrationAnalytics.labels,
+            datasets: [{
+              label: 'Daily Registrations',
+              data: data.registrationAnalytics.counts,
+              borderColor: '#1FB8CD',
+              backgroundColor: 'rgba(31, 184, 205, 0.1)',
+              tension: 0.4,
+              fill: true
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                display: false
+              }
+            }
+          }
+        });
       }
-    }
-  });
+
+      // Track Popularity Chart
+      const trackCtx = document.getElementById('trackPopularityChart')?.getContext('2d');
+      if (trackCtx) {
+        new Chart(trackCtx, {
+          type: 'bar',
+          data: {
+            labels: data.trackPopularity.tracks,
+            datasets: [{
+              label: 'Track Popularity',
+              data: data.trackPopularity.counts,
+              backgroundColor: ['#1FB8CD', '#F9C846', '#F96B6B', '#7C8DF9']
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                display: false
+              }
+            }
+          }
+        });
+      }
+
+      // Engagement Metrics
+      document.getElementById('avg-team-size').textContent = `${data.engagementMetrics.avgTeamSize} members`;
+      document.getElementById('submission-rate').textContent = `${data.engagementMetrics.submissionRate}% (${data.engagementMetrics.totalProjects}/${data.engagementMetrics.totalTeams} teams)`;
+      document.getElementById('mentor-utilization').textContent = `${data.engagementMetrics.mentorUtilization}% (${Math.round(data.engagementMetrics.mentorUtilization * data.engagementMetrics.totalMentors / 100)}/${data.engagementMetrics.totalMentors} mentors)`;
+      document.getElementById('active-participants').textContent = `${data.engagementMetrics.activeParticipants}% (${Math.round(data.engagementMetrics.activeParticipants * data.engagementMetrics.totalParticipants / 100)}/${data.engagementMetrics.totalParticipants})`;
+
+      // University Distribution
+      const uniList = document.getElementById('university-distribution-list');
+      if (uniList) {
+        uniList.innerHTML = '';
+        data.universityDistribution.forEach(u => {
+          const li = document.createElement('li');
+          li.innerHTML = `<span>${u.university}</span> <span style="color:#1FB8CD;float:right;">${u.percent}%</span>`;
+          uniList.appendChild(li);
+        });
+      }
+    })
+    .catch(err => {
+      console.error('Error loading analytics:', err);
+    });
 }
 
 // Form functions
