@@ -700,11 +700,11 @@ function populateParticipants() {
   if (!participantsGrid) return;
   
   participantsGrid.innerHTML = '';
-  
-  hackathonData.participants.slice(0, 6).forEach(participant => {
+  const maxToShow = 30;
+  const participantsToShow = hackathonData.participants.slice(0, maxToShow);
+  participantsToShow.forEach(participant => {
     const participantCard = document.createElement('div');
     participantCard.className = 'participant-card';
-    
     participantCard.innerHTML = `
       <div class="participant-header">
         <div>
@@ -718,21 +718,55 @@ function populateParticipants() {
         <span class="status status--${getStatusClass(participant.status)}">${participant.status}</span>
       </div>
     `;
-    
+    participantsGrid.appendChild(participantCard);
+  });
+  if (hackathonData.participants.length > maxToShow) {
+    const showMoreBtn = document.createElement('button');
+    showMoreBtn.textContent = 'Show More';
+    showMoreBtn.className = 'btn btn--primary show-more-btn';
+    showMoreBtn.onclick = function() {
+      showAllParticipants();
+      showMoreBtn.remove();
+    };
+    participantsGrid.appendChild(showMoreBtn);
+  }
+}
+
+function showAllParticipants() {
+  const participantsGrid = document.getElementById('participants-grid');
+  if (!participantsGrid) return;
+  participantsGrid.innerHTML = '';
+  hackathonData.participants.forEach(participant => {
+    const participantCard = document.createElement('div');
+    participantCard.className = 'participant-card';
+    participantCard.innerHTML = `
+      <div class="participant-header">
+        <div>
+          <h3 class="participant-name">${participant.name}</h3>
+          <p class="participant-email">${participant.email}</p>
+        </div>
+        <span class="participant-track">${participant.track}</span>
+      </div>
+      <div class="participant-meta">
+        <span>${participant.experience}</span>
+        <span class="status status--${getStatusClass(participant.status)}">${participant.status}</span>
+      </div>
+    `;
     participantsGrid.appendChild(participantCard);
   });
 }
+
 
 function populateTeams() {
   const teamsGrid = document.getElementById('teams-grid');
   if (!teamsGrid) return;
   
   teamsGrid.innerHTML = '';
-  
-  hackathonData.teams.slice(0, 6).forEach(team => {
+  const maxToShow = 30;
+  const teamsToShow = hackathonData.teams.slice(0, maxToShow);
+  teamsToShow.forEach(team => {
     const teamCard = document.createElement('div');
     teamCard.className = 'team-card';
-    
     teamCard.innerHTML = `
       <div class="team-header">
         <div>
@@ -748,21 +782,57 @@ function populateTeams() {
         <a href="https://${team.githubUrl}" target="_blank" class="project-link">GitHub</a>
       </div>
     `;
-    
+    teamsGrid.appendChild(teamCard);
+  });
+  if (hackathonData.teams.length > maxToShow) {
+    const showMoreBtn = document.createElement('button');
+    showMoreBtn.textContent = 'Show More';
+    showMoreBtn.className = 'btn btn--primary show-more-btn';
+    showMoreBtn.onclick = function() {
+      showAllTeams();
+      showMoreBtn.remove();
+    };
+    teamsGrid.appendChild(showMoreBtn);
+  }
+}
+
+function showAllTeams() {
+  const teamsGrid = document.getElementById('teams-grid');
+  if (!teamsGrid) return;
+  teamsGrid.innerHTML = '';
+  hackathonData.teams.forEach(team => {
+    const teamCard = document.createElement('div');
+    teamCard.className = 'team-card';
+    teamCard.innerHTML = `
+      <div class="team-header">
+        <div>
+          <h3 class="team-name">${team.name}</h3>
+        </div>
+        <span class="team-track">${team.track}</span>
+      </div>
+      <div class="team-project">
+        <h4>${team.projectName}</h4>
+      </div>
+      <div class="team-footer">
+        <span class="status status--${getStatusClass(team.submissionStatus)}">${team.submissionStatus}</span>
+        <a href="https://${team.githubUrl}" target="_blank" class="project-link">GitHub</a>
+      </div>
+    `;
     teamsGrid.appendChild(teamCard);
   });
 }
+
 
 function populateProjects() {
   const projectsGrid = document.getElementById('projects-grid');
   if (!projectsGrid) return;
   
   projectsGrid.innerHTML = '';
-  
-  hackathonData.projects.forEach(project => {
+  const maxToShow = 30;
+  const projectsToShow = hackathonData.projects.slice(0, maxToShow);
+  projectsToShow.forEach(project => {
     const projectCard = document.createElement('div');
     projectCard.className = 'project-card';
-    
     projectCard.innerHTML = `
       <div class="project-header">
         <div>
@@ -773,21 +843,52 @@ function populateProjects() {
       </div>
       <p class="project-description">${project.description}</p>
     `;
-    
+    projectsGrid.appendChild(projectCard);
+  });
+  if (hackathonData.projects.length > maxToShow) {
+    const showMoreBtn = document.createElement('button');
+    showMoreBtn.textContent = 'Show More';
+    showMoreBtn.className = 'btn btn--primary show-more-btn';
+    showMoreBtn.onclick = function() {
+      showAllProjects();
+      showMoreBtn.remove();
+    };
+    projectsGrid.appendChild(showMoreBtn);
+  }
+}
+
+function showAllProjects() {
+  const projectsGrid = document.getElementById('projects-grid');
+  if (!projectsGrid) return;
+  projectsGrid.innerHTML = '';
+  hackathonData.projects.forEach(project => {
+    const projectCard = document.createElement('div');
+    projectCard.className = 'project-card';
+    projectCard.innerHTML = `
+      <div class="project-header">
+        <div>
+          <h3 class="project-title">${project.projectName}</h3>
+          <p class="project-team">by ${project.teamName}</p>
+        </div>
+        <span class="status status--${getStatusClass(project.status)}">${project.status}</span>
+      </div>
+      <p class="project-description">${project.description}</p>
+    `;
     projectsGrid.appendChild(projectCard);
   });
 }
+
 
 function populateJudges() {
   const judgesList = document.getElementById('judges-list');
   if (!judgesList) return;
   
   judgesList.innerHTML = '';
-  
-  hackathonData.judges.forEach(judge => {
+  const maxToShow = 30;
+  const judgesToShow = hackathonData.judges.slice(0, maxToShow);
+  judgesToShow.forEach(judge => {
     const judgeItem = document.createElement('div');
     judgeItem.className = 'judge-item';
-    
     judgeItem.innerHTML = `
       <div class="judge-info">
         <h4>${judge.name}</h4>
@@ -795,21 +896,49 @@ function populateJudges() {
         <div>Tracks: ${judge.tracksAssigned.join(', ')}</div>
       </div>
     `;
-    
+    judgesList.appendChild(judgeItem);
+  });
+  if (hackathonData.judges.length > maxToShow) {
+    const showMoreBtn = document.createElement('button');
+    showMoreBtn.textContent = 'Show More';
+    showMoreBtn.className = 'btn btn--primary show-more-btn';
+    showMoreBtn.onclick = function() {
+      showAllJudges();
+      showMoreBtn.remove();
+    };
+    judgesList.appendChild(showMoreBtn);
+  }
+}
+
+function showAllJudges() {
+  const judgesList = document.getElementById('judges-list');
+  if (!judgesList) return;
+  judgesList.innerHTML = '';
+  hackathonData.judges.forEach(judge => {
+    const judgeItem = document.createElement('div');
+    judgeItem.className = 'judge-item';
+    judgeItem.innerHTML = `
+      <div class="judge-info">
+        <h4>${judge.name}</h4>
+        <p>${judge.organization}</p>
+        <div>Tracks: ${judge.tracksAssigned.join(', ')}</div>
+      </div>
+    `;
     judgesList.appendChild(judgeItem);
   });
 }
+
 
 function populateMentors() {
   const mentorsGrid = document.getElementById('mentors-grid');
   if (!mentorsGrid) return;
   
   mentorsGrid.innerHTML = '';
-  
-  hackathonData.mentors.forEach(mentor => {
+  const maxToShow = 30;
+  const mentorsToShow = hackathonData.mentors.slice(0, maxToShow);
+  mentorsToShow.forEach(mentor => {
     const mentorCard = document.createElement('div');
     mentorCard.className = 'mentor-card';
-    
     mentorCard.innerHTML = `
       <div class="mentor-header">
         <div>
@@ -821,10 +950,42 @@ function populateMentors() {
         </span>
       </div>
     `;
-    
+    mentorsGrid.appendChild(mentorCard);
+  });
+  if (hackathonData.mentors.length > maxToShow) {
+    const showMoreBtn = document.createElement('button');
+    showMoreBtn.textContent = 'Show More';
+    showMoreBtn.className = 'btn btn--primary show-more-btn';
+    showMoreBtn.onclick = function() {
+      showAllMentors();
+      showMoreBtn.remove();
+    };
+    mentorsGrid.appendChild(showMoreBtn);
+  }
+}
+
+function showAllMentors() {
+  const mentorsGrid = document.getElementById('mentors-grid');
+  if (!mentorsGrid) return;
+  mentorsGrid.innerHTML = '';
+  hackathonData.mentors.forEach(mentor => {
+    const mentorCard = document.createElement('div');
+    mentorCard.className = 'mentor-card';
+    mentorCard.innerHTML = `
+      <div class="mentor-header">
+        <div>
+          <h3 class="mentor-name">${mentor.name}</h3>
+          <p class="mentor-company">${mentor.company}</p>
+        </div>
+        <span class="status status--${mentor.availability === 'Available' ? 'success' : 'warning'}">
+          ${mentor.availability}
+        </span>
+      </div>
+    `;
     mentorsGrid.appendChild(mentorCard);
   });
 }
+
 
 function populateAnnouncements() {
   const announcementsList = document.getElementById('announcements-list');
